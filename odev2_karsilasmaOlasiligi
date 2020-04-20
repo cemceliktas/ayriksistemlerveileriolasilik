@@ -1,0 +1,117 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Welcome To Colaboratory",
+      "provenance": [],
+      "collapsed_sections": [],
+      "toc_visible": true,
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/cemceliktas/ayriksistemlerveileriolasilik/blob/master/odev2_karsilasmaOlasiligi\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "q6TqgyKRNL3F",
+        "colab_type": "text"
+      },
+      "source": [
+        "\n",
+        "Soru : Biz 6 katlı bir aile apartmanında ikamet etmekteyiz ve ailenin bir çok ferdide Beşiktaşlıdır. Aileme ders çalışmak için arkadaşıma gideceğimi söyleyip Beşiktaş maçını izlemek için bir cafeye gittim fakat yakalanmamak için çok dikkatli olmam gerekli 😊 cafede aynı apartman içinde oturan Beşiktaşlı aile bireylerime yakalanma olasılığım nedir ?\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "---\n",
+        "\n",
+        "\n",
+        "\n",
+        "---\n",
+        "\n",
+        "Cafede ben Dahil 200 kişi olduğunu farzedelim ve kapıdan girip sandalyeye oturana kadar ki geçen sürede 50 kişi ile karşılaştığımı varsayalım , Bizim dairedeki Beşiktaşlı akraba sayısıda 20 diyelim .\n",
+        "\n",
+        "Bu durumda cafedeki 200 kişiden kendimi çıkardığımda 199 kişi kalır . 199 kişiden 50 kişi ile karşılaşıyoruz ve 20 akraba ile aynı dairede oturuyoruz . yani 179 kişi farklı evlerden maç izlemeye gelmiş .\n",
+        "\n",
+        "----> 179 kişi akrabalarım olmayan cafedeki kişilerdir\n",
+        "\n",
+        "----> Tüm durum – İsyenmeyen durum\n",
+        "\n",
+        "----> P(a)=(14950) / (20050) = 0,745"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "h2-X60XjNYfv",
+        "colab_type": "code",
+        "colab": {}
+      },
+      "source": [
+        "import math\n",
+        "def faktoriyelHesapla(f): # Faktoriyel Hesaplama Fonksiyonu\n",
+        "    if f==1:       \n",
+        "        return 1\n",
+        "    else: \n",
+        "        return f * faktoriyelHesapla(f-1)"
+      ],
+      "execution_count": 0,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "OlPQt9jRNrl-",
+        "colab_type": "code",
+        "colab": {}
+      },
+      "source": [
+        "def kombinasyonHesapla(n,r):# Kominasyon Hesaplama Fonksiyonu\n",
+        "    return int(faktoriyelHesapla(n)/(faktoriyelHesapla(n-r)*faktoriyelHesapla(r)))"
+      ],
+      "execution_count": 0,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "42bSemRYNyHc",
+        "colab_type": "code",
+        "colab": {}
+      },
+      "source": [
+        "cafedeki_tumKisiler = int(input('Cafedeki toplam kişi sayısını giriniz:'))\n",
+        "karsilastigim_tumKisiler = int(input('Cafede karşılaşılan kişi sayısını giriniz:'))\n",
+        "aynıbinadaki_akrabalar = int(input('Aynı binada oturduğunuz akraba sayısını giriniz:'))\n",
+        "\n",
+        "n1 = cafedeki_tumKisiler - aynıbinadaki_akrabalar - 1\n",
+        "r1 = karsilastigim_tumKisiler\n",
+        "n2 = cafedeki_tumKisiler - 1\n",
+        "\n",
+        "istenmeyenDurum = kombinasyonHesapla(n1,r1)\n",
+        "tumDurum = kombinasyonHesapla(n2,r1)\n",
+        "print('\\nistenmeyen durumlar ({0} {1}) : {2}'.format(n1,r1,istenmeyenDurum))\n",
+        "print('\\ntüm durumlar ({0} {1}) : {2}'.format(n2,r1,tumDurum))\n",
+        "cevap = 1 - istenmeyenDurum/tumDurum\n",
+        "print('\\n1 - ({0} {1}) / ({2} {3}) = {4}'.format(n1,r1,n2,r1, cevap))"
+      ],
+      "execution_count": 0,
+      "outputs": []
+    }
+  ]
+}
